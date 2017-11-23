@@ -11,22 +11,22 @@ fiddlerEnabled = False #Toggle SSL verification since Fiddler breaks it
 
 class RobloxClient(object):
 
-	def __init__(self, username, password):
-		self.session = requests.Session()
-		self.username = username
-		self.xsrfToken = None
+	def __init__(self, user, password):
+		self.authenticatedUser = user
+		self.__session = requests.Session()
+		self.__xsrfToken = None
 		
-		self.authenticateRoblox(username, password)
+		self.authenticateRoblox(user.username, password)
 	
 	#returns userId, else errors if unsuccessful login
 	def authenticateRoblox(self, username, password):
 		data = {"username":username, "password":password}
 		
 		#With 2-Step disabled
-		#status_code = 200, data = JSON:{"userId":34534506}
+		#status_code = 200, data = JSON:{"userId":362777081}
 		#With 2-Step enabled
 		#status_code = 200, data= JSON:{"tl":"f191ad51-8579-4936-b0b9-4c8f32560330","mediaType":"Email","message":"TwoStepverificationRequired"}
-		result = self.session.post("https://api.roblox.com/v2/login", data=data, verify=not fiddlerEnabled)
+		result = self.__session.post("https://api.roblox.com/v2/login", data=data, verify=not fiddlerEnabled)
 		jsonResult = result.json()
 	
 		if jsonResult.get("tl"):
@@ -38,7 +38,7 @@ class RobloxClient(object):
 				twoStepData["IdentificationCode"] = userInput
 	
 				#status_code = 200, data= JSON:{"isValid":true,"userId":1273918}
-				result = self.session.post(twoStepUrl, data=twoStepData)
+				result = self.__session.post(twoStepUrl, data=twoStepData)
 				jsonResult = result.json()
 			
 				if result.status_code == 403:
@@ -54,11 +54,11 @@ class RobloxClient(object):
 		if not "headers" in args:
 			args["headers"] = {}
 
-		args["headers"]["X-CSRF-TOKEN"] = self.xsrfToken
+		args["headers"]["X-CSRF-TOKEN"] = self.__xsrfToken
 		
-		result = self.session.request(method, url, verify=not fiddlerEnabled, **args)
+		result = self.__session.request(method, url, verify=not fiddlerEnabled, **args)
 		if result.status_code == 403 and "X-CSRF-TOKEN" in result.headers: #403 XSRF Token Validation Failed
-			self.xsrfToken = result.headers["X-CSRF-TOKEN"]
+			self.__xsrfToken = result.headers["X-CSRF-TOKEN"]
 
 			return self.makeRequestREST(method, url, **args)
 		
