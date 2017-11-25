@@ -2,6 +2,11 @@
 __pycache__/
 *.py[cod]
 
+# Project build items
+build/
+dist/
+*.egg-info
+
 #project files
 .project
 .pydevproject
