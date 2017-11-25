@@ -18,5 +18,14 @@ setup(
 	packages = find_packages(exclude=["tests"]),
 	install_requires = [
 		"requests", "bs4", "python-dateutil"
+	],
+	classifiers = [
+		"Development Status :: 3 - Alpha",
+		"Environment :: Web Environment",
+		"Intended Audience :: Developers",
+		"License :: OSI Approved :: Apache Software Liscense",
+		"Operating System :: OS Independent",
+		"Programming Language :: Python",
+		"Programming Language :: Python :: 3.6"
 	]
 )
