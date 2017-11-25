@@ -3,9 +3,6 @@ from enum import Enum
 
 import bs4
 
-from user import User
-from group import Group
-
 class AuditAction(Enum):
 	DeletePost = 1
 	RemoveMember = 2
