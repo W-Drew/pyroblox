@@ -23,7 +23,7 @@ setup(
 		"Development Status :: 3 - Alpha",
 		"Environment :: Web Environment",
 		"Intended Audience :: Developers",
-		"License :: OSI Approved :: Apache Software Liscense",
+		"License :: OSI Approved :: Apache Software License",
 		"Operating System :: OS Independent",
 		"Programming Language :: Python",
 		"Programming Language :: Python :: 3.6"
