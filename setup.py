@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
 	name = "pyRoblox",
-	version = "0.0.2",
+	version = "0.0.3",
 	description = "Python library for interfacing with Roblox",
 	long_description = read("README.md"),
 	url = "https://github.com/EchoReaper/pyroblox",
