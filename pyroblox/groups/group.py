@@ -8,8 +8,8 @@ import requests
 
 from bs4 import BeautifulSoup
 
-from users.user import User
-from groups.role import Role
+from pyroblox.users.user import User
+from pyroblox.groups.role import Role
 
 def getUserGroups(user):
 	url = f"https://api.roblox.com/users/{user.userId}/groups"

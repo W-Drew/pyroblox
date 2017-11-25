@@ -8,8 +8,8 @@ from enum import Enum
 from bs4 import BeautifulSoup
 import dateutil
 
-from users.user import userIdFromText
-from users.user import User
+from pyroblox.users.user import userIdFromText
+from pyroblox.users.user import User
 
 class RequestActionType(Enum):
 	Pass = 0

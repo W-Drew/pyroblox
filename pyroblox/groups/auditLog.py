@@ -9,7 +9,7 @@ import queue
 from bs4 import BeautifulSoup
 import dateutil
 
-from users.user import User
+from pyroblox.users.user import User
 
 class AuditLog():
 	def __init__(self, group, robloxClient):
